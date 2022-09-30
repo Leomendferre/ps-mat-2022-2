@@ -1,0 +1,5 @@
+npx sequelize-cli model:generate --name Turma --attributes id:integer,curso_id:integer,professor_id:integer,nome:string,dia_semana:tinyint,horario_ini:time,horario_fim:time,data_ini:dateonly,data_fim:dateonly
+
+npx sequelize-cli model:generate --name Curso --attributes id:integer,sigla:string,descricao:string,duracao_meses:integer,carga_horaria:integer,valor_total:decimal
+
+npx sequelize-cli db:migrate

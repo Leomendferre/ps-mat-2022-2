@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/usuario')
+const verifToken = require('../lib/verif_token')
 
 router.post('/', controller.create)
 router.get('/', controller.retrieve)
