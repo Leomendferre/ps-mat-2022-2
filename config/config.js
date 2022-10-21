@@ -1,10 +1,10 @@
 require('dotenv').config()
 
-const {
+const { 
   APP_DB_HOST, 
   APP_DB_NAME, 
   APP_DB_USER, 
-  APP_DB_PASS
+  APP_DB_PASS 
 } = process.env
 
 module.exports = {

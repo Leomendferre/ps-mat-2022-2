@@ -14,7 +14,8 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'cursos',
-          key: 'id'        
+          key: 'id'
+        }
       },
       professor_id: {
         type: Sequelize.INTEGER,
@@ -26,13 +27,13 @@ module.exports = {
       },
       nome: {
         type: Sequelize.STRING(30),
-        allowNull: false
+        allowNull: false,
       },
       dia_semana: {
         type: Sequelize.TINYINT,
         allowNull: false,
-        min: 1, //domingo
-        max: 7 // sábado
+        min: 1,  // domingo
+        max: 7   // sábado
       },
       horario_ini: {
         type: Sequelize.TIME,
@@ -47,7 +48,7 @@ module.exports = {
         allowNull: false
       },
       data_fim: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.DATEONLY
       },
       createdAt: {
         allowNull: false,
@@ -60,6 +61,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Turmas');
+    await queryInterface.dropTable('turmas');
   }
 };

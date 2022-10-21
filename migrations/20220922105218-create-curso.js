@@ -1,36 +1,34 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('usuarios', {
+    await queryInterface.createTable('cursos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
-      },
-      nome: {
-        type: Sequelize.STRING(100),
-        allowNull: false
-      },
-      email: { 
-        type: Sequelize.STRING(100), 
-        allowNull: false,
+      sigla: {
+        type: Sequelize.CHAR(5),
         unique: true
       },
-      hash_senha: { 
-        type: Sequelize.STRING(100),
+      descricao: {
+        type: Sequelize.STRING(50),
         allowNull: false
       },
-      admin: {
-        type: Sequelize.BOOLEAN,
+      duracao_meses: {
+        type: Sequelize.TINYINT,
         allowNull: false,
-        defaultValue: false
+        defaultValue: 6
+      },
+      carga_horaria: {
+        type: Sequelize.TINYINT,
+        allowNull: false,
+        defaultValue: 80
+      },
+      valor_total: {
+        type: Sequelize.DECIMAL(18, 2),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -43,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('usuarios');
+    await queryInterface.dropTable('Cursos');
   }
 };

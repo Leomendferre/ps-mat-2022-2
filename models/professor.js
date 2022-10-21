@@ -1,10 +1,25 @@
-const {DataTypes} =  require('sequelize')
-const db = require('../config/db')
-
-const model = db.define('Professor', {
-
-    //id, nome, data_nascimento, cpf, formacao, valor_hora_aula, email
-
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Professor extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      this.hasMany(models.Turma, {
+        foreignKey: 'professor_id',
+        sourceKey: 'id',
+        as: 'turmas'
+      })
+    }
+  }
+  Professor.init({
+    // Model attributes are defined here
     id:{
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -37,8 +52,10 @@ const model = db.define('Professor', {
         allowNull: false,
         unique: true
     }
-},{ tableName: 'professores'});
-
-model.sync();
-
-module.exports = model;
+  }, {
+    sequelize,
+    modelName: 'Professor',
+    tableName: 'professores'
+  });
+  return Professor;
+};

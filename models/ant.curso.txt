@@ -1,24 +1,6 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Curso extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      this.hasMany(models.Turma, {
-        foreignKey: 'curso_id',
-        sourceKey: 'id',
-        as: 'turmas'
-      }) 
-    }
-  }
-  Curso.init({
+
+  const model = sequelize.define('Curso', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -48,10 +30,23 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    sequelize,
-    modelName: 'Curso',
-    tableName: 'cursos'
+      tableName: 'cursos'
   });
 
-  return Curso;
-};
+  // Chaves estrangeiras
+  model.associate = models => {
+    
+    model.hasMany(models.Turma, {
+      foreignKey: 'turma_id',
+      sourceKey: 'id'
+    })  
+
+  }
+
+  // Cria a tabela no banco de dados, caso ainda não exista
+  model.sync()
+
+  return model
+
+}
+

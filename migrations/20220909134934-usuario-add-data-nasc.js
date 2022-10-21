@@ -1,15 +1,13 @@
 'use strict';
 
-const sequelize = require("sequelize");
-
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.addColumn(
-      'usuarios', //nome da tabela
-      'data_nasc', // nome do campo
+      'usuarios',   // nome da tabela,
+      'data_nasc',  // nome do campo
       {
-        type: sequelize.DATE,
-        allowNull: false // So é possivel ser usado quando não tem um aluno já criado.
+        type: Sequelize.DATE,
+        allowNull: false
       }
     )
   },

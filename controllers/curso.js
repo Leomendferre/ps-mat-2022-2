@@ -1,4 +1,4 @@
-const Curso = require('../models/curso')
+const { Curso, Turma } = require('../models')
 
 const controller = {}       // Objeto vazio
 
@@ -26,7 +26,9 @@ controller.create = async(req, res) => {
 
 controller.retrieve = async (req, res) => {
     try {
-        const result = await Curso.findAll()
+        const result = await Curso.findAll({
+            include: { model: Turma, as: 'turmas' }
+        })
         // HTTP 200: OK (implícito)
         res.send(result)
     }
