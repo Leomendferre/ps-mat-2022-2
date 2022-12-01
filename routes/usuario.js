@@ -12,5 +12,6 @@ router.patch('/:id', verifToken, controller.update)
 router.delete('/:id', verifToken, controller.delete)
 
 router.post('/login', controller.login)
+router.get('/logout', controller.logout)
 
 module.exports = router
